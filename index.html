@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tendon Stress Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Stress in Tendons Not Yet Bonded Calculator</h1>
+        <p class="description">This calculator determines the stress in unbonded tendons at ultimate strength (ULS)</p>
+
+        <form id="calculatorForm">
+            <div class="section">
+                <label for="sectionType">Section Type:</label>
+                <select id="sectionType" required>
+                    <option value="">Select section type</option>
+                    <option value="T">T-section</option>
+                    <option value="Rectangular">Rectangular</option>
+                </select>
+            </div>
+
+            <div class="section">
+                <h2>Common Input Parameters</h2>
+                <div class="input-group">
+                    <label for="effectiveStress">σpe,ef (Effective stress after losses):</label>
+                    <input type="number" id="effectiveStress" required step="any">
+                    <span class="unit">MPa</span>
+                </div>
+                <div class="input-group">
+                    <label for="compressionFlange">dc (Compression flange thickness):</label>
+                    <input type="number" id="compressionFlange" required step="any">
+                    <span class="unit">mm</span>
+                </div>
+                <div class="input-group">
+                    <label for="k2">k2:</label>
+                    <input type="number" id="k2" required step="any">
+                </div>
+                <div class="input-group">
+                    <label for="frictionCoef">μ (Friction coefficient):</label>
+                    <input type="number" id="frictionCoef" required step="any">
+                </div>
+                <div class="input-group">
+                    <label for="totalDepth">h (Total depth):</label>
+                    <input type="number" id="totalDepth" required step="any">
+                    <span class="unit">mm</span>
+                </div>
+            </div>
+
+            <div id="tSectionInputs" class="section hidden">
+                <h2>T-Section Parameters</h2>
+                <div class="input-group">
+                    <label for="steelArea">Ap (Area of prestressing steel):</label>
+                    <input type="number" id="steelArea" step="any">
+                    <span class="unit">mm²</span>
+                </div>
+                <div class="input-group">
+                    <label for="yieldStrength">fpy (Yield strength):</label>
+                    <input type="number" id="yieldStrength" step="any">
+                    <span class="unit">MPa</span>
+                </div>
+                <div class="input-group">
+                    <label for="holeArea">Ah (Area of hole):</label>
+                    <input type="number" id="holeArea" step="any">
+                    <span class="unit">mm²</span>
+                </div>
+                <div class="input-group">
+                    <label for="concreteArea">Ac (Area of concrete):</label>
+                    <input type="number" id="concreteArea" step="any">
+                    <span class="unit">mm²</span>
+                </div>
+                <div class="input-group">
+                    <label for="width">b (Width):</label>
+                    <input type="number" id="width" step="any">
+                    <span class="unit">mm</span>
+                </div>
+                <div class="input-group">
+                    <label for="webWidth">bw (Web width):</label>
+                    <input type="number" id="webWidth" step="any">
+                    <span class="unit">mm</span>
+                </div>
+                <div class="input-group">
+                    <label for="concreteStrength">fc' (Concrete strength):</label>
+                    <input type="number" id="concreteStrength" step="any">
+                    <span class="unit">MPa</span>
+                </div>
+            </div>
+
+            <button type="submit" class="calculate-btn">Calculate</button>
+        </form>
+
+        <div id="results" class="section hidden">
+            <h2>Results</h2>
+            <div class="result-group">
+                <label>Lps (Length parameter):</label>
+                <span id="lpsResult">-</span>
+                <span class="unit">mm</span>
+            </div>
+            <div class="result-group">
+                <label>k₂d (Neutral axis depth):</label>
+                <span id="k2dResult">-</span>
+                <span class="unit">mm</span>
+            </div>
+            <div class="result-group">
+                <label>σps (Tendon stress):</label>
+                <span id="stressResult">-</span>
+                <span class="unit">MPa</span>
+            </div>
+        </div>
+    </div>
+    <script src="calculator.js"></script>
+    <script src="validation.js"></script>
+    <script src="ui.js"></script>
+</body>
+</html>
